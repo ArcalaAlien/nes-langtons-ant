@@ -1,0 +1,6 @@
+.include "system/segments/BSS.inc"
+.include "system/segments/RODATA.inc"
+.include "system/segments/TILES.inc"
+.include "system/segments/VECTORS.inc"
+.include "system/segments/ZEROPAGE.inc"
+.include "system/segments/CODE.inc"
