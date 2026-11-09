@@ -78,6 +78,29 @@
         STA PPUADDR
         STA PPUADDR
 
+        ; Nabbed from nesdev wiki
+        @init_apu:
+            ; Init $4000-4013
+            LDY #$13
+            @apu_loop:  
+                LDA @apu_reg_defaults,y
+                STA PULSE_1_SETTINGS,y
+                DEY
+                BPL @apu_loop
+
+                ; We have to skip over $4014 (OAMDMA)
+                LDA #$0f
+                STA CHANNEL_SETTINGS
+                LDA #$40
+                STA TRIANGLE_UNMUTE
+
+            @apu_reg_defaults:
+                .byte $30,$08,$00,$00
+                .byte $30,$08,$00,$00
+                .byte $80,$00,$00,$00
+                .byte $30,$00,$00,$00
+                .byte $00,$00,$00,$00
+
         @set_defaults:
             LDA #ANT_SPAWN_X
             STA ant_pos_x
@@ -100,6 +123,11 @@
         
         LDA #$01
         STA flush_nmi
+
+        LDA #$C4
+        STA rng_seed+0
+        LDA #$20
+        STA rng_seed+1
 
         JMP main
     ;end of reset vector

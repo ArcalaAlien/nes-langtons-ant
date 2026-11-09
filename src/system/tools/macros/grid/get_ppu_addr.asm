@@ -3,6 +3,10 @@
 
     ; PPUADDR = Cell ID formula
     ; (y*32) + x
+
+    ; $2000
+    ;
+    ; 
     .macro get_ppu_addr coord_x,coord_y
         ; Set up the hibyte of our ppu address
         ; $20 + (y/8)

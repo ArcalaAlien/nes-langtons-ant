@@ -6,6 +6,8 @@
 .exportzp cell_state, prev_cell_state
 .exportzp sizeof_queue
 .exportzp frame_count, flush_nmi
+.exportzp rng_seed
+.exportzp sound_playing
     ; ant stuff
     ant_pos_x:
         .res 1
@@ -67,3 +69,15 @@
 
     flush_nmi:
         .res 1
+
+    ; RNG
+    rng_seed:
+        .res 2
+
+    ; APU
+    sound_playing:
+        .res 1
+
+    ; 16 bit Binary to Decimal Number conversion
+    bcd_input:
+        .res 2
